@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slot Machine</title>
+
+<h1>Slot</h1>>
+
+<a href="https://www.instagram.com/uhhwee_1107/">README</a>
+
+	<style>
+body {
+    background: -moz-linear-gradient(45deg, #02e1ba 0%, #26c9f2 29%, #d911f2 66%, #ffa079 100%);
+    background: -webkit-linear-gradient(45deg, #02e1ba 0%,#26c9f2 29%,#d911f2 66%,#ffa079 100%);
+    background: linear-gradient(45deg, #02e1ba 0%,#26c9f2 29%,#d911f2 66%,#ffa079 100%);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+	/*min-height: calc(100vh - 2rem);*/
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-evenly;
+	overflow: hidden;
+	position: relative; 
+}
+
+body::before, 
+body::after {
+	content: "";
+	width: 70vmax;
+	height: 70vmax;
+	position: absolute;
+	background: rgba(255, 255, 255, 0.07);
+	left: -20vmin;
+	top: -20vmin;
+	animation: morph 15s linear infinite alternate, spin 20s linear infinite;
+	z-index: 1;
+	will-change: border-radius, transform;
+	transform-origin: 55% 55%;
+	pointer-events: none; 
+}
+	
+body::after {
+    width: 70vmin;
+    height: 70vmin;
+    left: auto;
+    right: -10vmin;
+    top: auto;
+    bottom: 0;
+    animation: morph 10s linear infinite alternate, spin 26s linear infinite reverse;
+    transform-origin: 20% 20%; 
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0 50%
+	}
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%; }
+  100% {
+    border-radius: 40% 60%; } 
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn); 
+  } 
+}
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{opacity:0.29;}
+	.st3{fill:#FFFFFF;}
+	.st4{clip-path:url(#SVGID_2_);fill:#FFFFFF;}
+	.st5{clip-path:url(#SVGID_4_);}
+	.st6{clip-path:url(#SVGID_6_);}
+	.st7{clip-path:url(#SVGID_8_);}
+	.st8{clip-path:url(#SVGID_10_);}
+	.st9{fill:none;}
+	.st10{clip-path:url(#SVGID_12_);}
+	.st11{opacity:0.7;}
+	.st12{clip-path:url(#SVGID_14_);}
+	.st13{opacity:0.2;}
+	.st14{clip-path:url(#SVGID_16_);}
+	.st15{opacity:0.3;fill:#FFFFFF;enable-background:new    ;}
+		.container {
+		  max-width: 600px;
+		  margin: 0 auto;
+		  padding: 20px;
+		  background-color: #ffffff;
+		  
+		  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		h1 {
+		  text-align: center;
+		  color: #333333;
+		}
+		
+
+		label {
+		  display: block;
+		  font-weight: bold;
+		  margin-bottom: 5px;
+		}
+		
+		input[type="text"] {
+		  width: 30px;
+		  padding: 5px;
+		  text-align: center;
+
+		  background-color: #f9f9f9;
+		}
+		
+		input[type="button"] {
+		  padding: 10px 20px;
+		  font-size: 14px;
+		  font-weight: bold;                                
+		  text-transform: uppercase;
+
+		  background-color: #333333;
+		  color: #ffffff;
+		  cursor: pointer;
+		}
+
+		
+		
+		input[type="button"]:hover {
+		  background-color: #555555;
+		}
+		
+		input[readonly] {
+		  background-color: #dddddd;
+		}
+		</style>
+		
+	<script>
+		let hayasa = 30;
+		let coin = 50;
+		let mes = 'You have run out of coins.';
+		let rate1 = 2;
+		let rate2 = 3;
+		let kekka = coin;
+		let nums = ['', '', ''];
+		let timers = 0;
+		let e1 = 0, e2 = 0, e3 = 0;
+
+		function hajime() {
+			kekka = coin;
+			document.getElementById('kekka').value = coin;
+			document.getElementById('text1').value = '';
+			document.getElementById('text2').value = '';
+			document.getElementById('text3').value = '';
+		}
+
+		function srot() {
+			if (e1 < 1000) {
+				nums[0] = Math.floor(Math.random() * 46);
+				for (let i1 = 0, j1 = 9, k1 = j1; i1 < 10; i1++) {
+					if (nums[0] < k1 || nums[0] == 45) {
+						if (i1 + 1 == 10) nums[0] = 0;
+						else nums[0] = i1 + 1;
+						break;
+					}
+					j1--;
+					k1 += j1;
+				}
+				document.getElementById('text1').value = nums[0];
+				e1++;
+				clearTimeout(timers);
+				timers = setTimeout(srot, hayasa);
+			}
+
+			if (e2 < 1000) {
+				nums[1] = Math.floor(Math.random() * 46);
+				for (let i2 = 0, j2 = 9, k2 = j2; i2 < 10; i2++) {
+					if (nums[1] < k2 || nums[1] == 45) {
+						if (i2 + 1 == 10) nums[1] = 0;
+						else nums[1] = i2 + 1;
+						break;
+					}
+					j2--;
+					k2 += j2;
+				}
+				document.getElementById('text2').value = nums[1];
+				e2++;
+				clearTimeout(timers);
+				timers = setTimeout(srot, hayasa);
+			}
+
+			if (e3 < 1000) {
+				nums[2] = Math.floor(Math.random() * 46);
+				for (let i3 = 0, j3 = 9, k3 = j3; i3 < 10; i3++) {
+					if (nums[2] < k3 || nums[2] == 45) {
+						if (i3 + 1 == 10) nums[2] = 0;
+						else nums[2] = i3 + 1;
+						break;
+					}
+					j3--;
+					k3 += j3;
+				}
+				document.getElementById('text3').value = nums[2];
+				e3++;
+				clearTimeout(timers);
+				timers = setTimeout(srot, hayasa);
+			}
+
+			if (e1 >= 1000 || e2 >= 1000 || e3 >= 1000) stop();
+		}
+
+		function stop() {
+			document.getElementById('text1').value = nums[0];
+			document.getElementById('text2').value = nums[1];
+			document.getElementById('text3').value = nums[2];
+			if (e1 >= 1000 && e2 >= 1000 && e3 >= 1000) {
+				if (nums[0] == nums[1] && nums[1] == nums[2]) {
+					if (nums[0] == 0) kekka += 10 * rate1;
+					else kekka += nums[0] * rate1;
+				} else if (nums[0] == nums[1] + 1 && nums[1] == nums[2] + 1) {
+					if (nums[0] == 0) kekka += 10 * rate2;
+					else kekka += nums[0] * rate2;
+				} else if (nums[2] == nums[1] + 1 && nums[1] == nums[0] + 1) {
+					if (nums[0] == 0) kekka += 10 * rate2;
+					else kekka += nums[0] * rate2;
+				}
+				document.getElementById('kekka').value = kekka;
+			}
+		}
+
+		function starts(e) {
+			e = Number(e);
+			if (e === 0) {
+				if (kekka < 1) {
+					alert(mes);
+					document.getElementById('kekka').value = 0;
+				} else {
+					kekka--;
+					document.getElementById('kekka').value = kekka;
+					e1 = 0;
+					e2 = 0;
+					e3 = 0;
+					srot();
+				}
+			} else if (e === 1) e1 = 1000;
+			else if (e === 2) e2 = 1000;
+			else if (e === 3) e3 = 1000;
+		}
+	</script>
+</head>
+<body onLoad="hajime();">
+	<form name="form1">
+		<table border="1" align="center">
+			<tr>
+				<td align="center">
+					<label for="text1">Number 1:</label>
+					<input type="text" size="1" name="text1" id="text1" readonly>
+				</td>
+				<td align="center">
+					<label for="text2">Number 2:</label>
+					<input type="text" size="1" name="text2" id="text2" readonly>
+				</td>
+				<td align="center">
+					<label for="text3">Number 3:</label>
+					<input type="text" size="1" name="text3" id="text3" readonly>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="button" value="Stop!" onClick="starts(1);">
+				</td>
+				<td align="center">
+					<input type="button" value="Stop!" onClick="starts(2);">
+				</td>
+				<td align="center">
+					<input type="button" value="Stop!" onClick="starts(3);">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
+					<input type="button" value="Start!" onClick="starts(0);">
+					<input type="button" value="Reset" onClick="hajime();">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
+					<label for="kekka">所持金:</label>
+					<input type="text" size="5" name="kekka" id="kekka" readonly>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
